@@ -12,14 +12,20 @@ def hello_world(request):
     return HttpResponse(f"Current server time is {now}")
 
 
-def hi(request):
+def sort_numbers(request):
     # import pdb
     # pdb.set_trace()
     
     numbers = list()
     numbers = map(lambda x : int(x),request.GET["numbers"].split(","))
     
-    obj = dict()
-    obj['numbers'] = sorted(numbers)
+    data = {
+        'status':'OK',
+        'numbers': sorted(numbers),
+        'message':'Numbers sorted successfully'
+    }
     
-    return HttpResponse(json.dumps(obj))
+    return HttpResponse(
+        json.dumps(data, indent=4), 
+        content_type="application/json"
+    )
