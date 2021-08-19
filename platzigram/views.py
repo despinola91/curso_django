@@ -29,3 +29,12 @@ def sort_numbers(request):
         json.dumps(data, indent=4), 
         content_type="application/json"
     )
+
+def say_hi(request, name, age):
+    """Return a greeting."""
+    if age < 12:
+        message = f"Sorry {name} you are not allowed here!"
+    else:
+        message = f"Hello {name}! Welcome to Platzigram!"
+        
+    return HttpResponse(message)
